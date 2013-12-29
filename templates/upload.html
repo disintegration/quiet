@@ -1,0 +1,29 @@
+{{template "header.html" .}}
+
+	<h2>Upload</h2>
+
+	<form method="post" enctype="multipart/form-data">
+
+		<label>
+			Photo: 
+			<input name="photo_file" id="photo_file" type="file" accept="image/jpeg">
+		</label>
+		<br>
+
+		<label>	
+			Title: 
+			<input name="photo_title" type="text" size="30" value="">
+		</label>
+		<br>
+
+		<label>	
+			Description: <br>
+			<textarea name="photo_description" cols="50" rows="10"></textarea> 
+		</label>
+		<br>
+
+		<input type="submit" value="Save"/>
+
+	</form>	
+	
+{{template "footer.html" .}}

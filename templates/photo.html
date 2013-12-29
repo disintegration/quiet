@@ -1,0 +1,102 @@
+{{template "header.html" .}}
+
+	<div class="userheader">
+		<div class="avatar">
+			<a href="/photos/{{.User.Username}}/"><img src="/static/avatars/{{.User.Id}}_50.jpg"></a>
+		</div>
+		<div class="rightbox">
+			<div class="username"> {{.User.Username}} 
+			{{if .User.RealName}}<span class="separator">|</span> {{.User.RealName}}{{end}}</div>
+			<div class="userlinks">
+				<a href="/photos/{{.User.Username}}/"><i class="fa fa-camera-retro"></i> photostream</a>
+				<span class="separator">|</span>
+				<a href="/favorites/{{.User.Username}}/"><i class="fa fa-heart"></i> favorites</a>
+				{{if .ShowAddContact}}
+					<span class="separator">|</span> 
+					<a class="contact_add" href="javascript:addContact('{{.User.Username}}')"><i class="fa fa-plus-square"></i> add contact</a>
+				{{end}}
+				{{if .ShowDelContact}}
+					<span class="separator">|</span> 
+					<a class="contact_del" href="javascript:delContact('{{.User.Username}}')"><i class="fa fa-minus-square"></i> remove from contacts</a>
+				{{end}}
+			</div>
+		</div>
+	</div>	
+
+	<div class="photoview">
+		<div class="photo"><img src="/static/photos/{{.Photo.Id}}_{{.Photo.RandId}}_f1000.jpg"><br></div>
+		<div class="photo_title">{{.Photo.Title}}</div>
+		<div>
+			<span class="photo_stats">
+				<span title="views"><i class="fa fa-eye"></i> {{.Photo.ViewsCount}}</span> /
+				<span title="favorites"><i class="fa fa-heart"></i> {{.Photo.FavoritesCount}}</span> /
+				<span title="comments"><i class="fa fa-comments"></i> {{.Photo.CommentsCount}}</span>
+			</span>
+			<span class="separator">|</span>
+			<span class="photo_uploaded">
+				Uploaded on {{.Photo.Tm | formatdt}}
+			</span>
+			<span class="separator">|</span>
+			<span class="photo_links">
+				{{if .ShowAddFavorite}}
+					<a href="javascript:addFavorite('{{.User.Username}}', '{{.Photo.Id}}')"><i class="fa fa-plus-square"></i> add to favorites</a>
+				{{end}}
+				{{if .ShowDelFavorite}}
+					<a href="javascript:delFavorite('{{.User.Username}}', '{{.Photo.Id}}')"><i class="fa fa-minus-square"></i> remove from favorites</a>
+				{{end}}
+				{{if .CurrentUser}}
+					{{if eq .User.Id .CurrentUser.Id}}
+						<a class="warning" href="javascript:delPhoto('{{.User.Username}}', '{{.Photo.Id}}')">[delete this photo]</a>
+					{{end}}
+				{{end}}
+			</span>
+		</div>
+		<div class="comments">
+			{{$outer := .}}
+			{{range .Comments}}
+				<div class="comment">
+					<div class="avatar">
+						<a href="/photos/{{.UserUsername}}/">
+							<img src="/static/avatars/{{.UserId}}_50.jpg">
+						</a>
+					</div>
+					<div class="rightbox">
+						<div class="comment_info">
+							<a href="/photos/{{.UserUsername}}/">{{.UserUsername}} {{if .UserRealName}}({{.UserRealName}}){{end}}</a>
+							on {{.Tm | formatdt}}
+							{{if $outer.CurrentUser}}
+								{{if eq $outer.CurrentUser.Id .UserId}}
+								&nbsp;	<a class="warning" href="javascript:delComment('{{$outer.User.Username}}', '{{$outer.Photo.Id}}', '{{.Id}}')">[delete]</a>
+								{{else if eq $outer.CurrentUser.Id $outer.User.Id}}
+								&nbsp;	<a class="warning" href="javascript:delComment('{{$outer.User.Username}}', '{{$outer.Photo.Id}}', '{{.Id}}')">[delete]</a>
+								{{end}}
+							{{end}}
+						</div>
+						<div class="comment_text">
+							{{.Comment}}
+						</div>
+						<div class="comment_links">
+							
+						</div>
+					</div>
+				</div>
+			{{end}}
+			<div class="new_comment_block">
+				<form id="form_add_comment" action="/photos/{{.User.Username}}/{{.Photo.Id}}/comment/" method="post">
+					<div class="avatar"><img src="/static/avatars/{{.CurrentUser.Id}}_50.jpg"></div>
+					<div class="new_comment_text"><textarea name="comment"></textarea></div>
+					<div class="submit_btn"><input type="button" value="Post comment" onclick="addComment('{{$outer.User.Username}}', '{{$outer.Photo.Id}}')"/></div>
+				</form>
+			</div>			
+		</div>
+	</div>
+
+	<script>
+		$(".comment_text").each(function(){
+			$(this).html(
+				$(this).text().replace(/^\s+|\s+$/g, '').replace(/\n/g, "<br>")
+			);
+		});
+	</script>
+	
+{{template "footer.html" .}}

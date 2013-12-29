@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<title>quiet</title>
+		<script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+		<script src='https://login.persona.org/include.js'></script>
+		<script src='/static/quiet.js'></script>
+		<link href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps' rel='stylesheet' type='text/css'>
+		<link href='/static/quiet.css' rel='stylesheet' type='text/css'>
+		<script>			
+			initPersona({{if .CurrentUser}}'{{.CurrentUser.Persona}}'{{else}}null{{end}});			
+		</script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="header">
+				<div id="main_logo">
+					<a href="/"><i class="fa fa-camera-retro"></i> quiet</a>
+				</div>
+				<div id="main_links">
+					{{if .CurrentUser}}
+					<a href="/photos/{{.CurrentUser.Username}}/">you</a>
+					<a href="/contacts/photos/">contacts</a>
+					<a href="/favorites/{{.CurrentUser.Username}}/">favorites</a>
+					<a href="/settings/">settings</a>
+					<a href="/upload/">upload</a>
+					{{end}}
+				</div>
+				<div id="auth">
+					{{if .CurrentUser}}
+						<div id="auth_user">
+							<img src="/static/avatars/{{.CurrentUser.Id}}_25.jpg">
+							<div class="username">{{.CurrentUser.Username}}</div>
+						</div>						
+						<div id="auth_link">
+							<a class="persona_link" href="javascript:navigator.id.logout()"><i class="fa fa-key"></i> logout</a>
+						</div>
+					{{else}}
+						<div id="auth_link">
+							<a class="persona_link" href="javascript:navigator.id.request()"><i class="fa fa-key"></i> login / register</a>
+						</div>
+					{{end}} 
+				</div>
+			</div>
+			<div class="clear"></div>

@@ -1,0 +1,298 @@
+
+body, div {
+	padding: 0;
+	margin: 0;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: #36C;
+}
+a.warning {
+	color: #aaa;
+}
+
+.clear {
+	clear: both;
+}
+
+#wrapper {
+	width: 1050px;
+	margin: 0 auto;
+}
+
+#header {
+	height: 38px;
+	border-bottom: #DDD 1px dotted;
+	margin-bottom: 10px;
+}
+#footer {
+	border-top: #DDD 1px dotted;
+	padding: 10px;
+	font-size: 12px;
+	margin: 20px 0 10px 0;
+	text-align: right;
+}
+
+#main_logo {
+	float: left;
+	height: 32px;
+	font-family: 'Oleo Script Swash Caps', cursive;
+	font-size: 24px;
+	padding-right: 20px;
+}
+
+#main_links {
+	float: left;
+	height: 32px;
+	line-height: 32px;
+	padding-top: 1px;
+}
+
+#main_links a {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 15px;
+	color: #333;
+	padding: 0 5px;
+	letter-spacing: 1px;
+}
+
+#auth {
+	float: right;
+	height: 32px;
+}
+#auth_user {
+	float: left;
+	height: 25px;
+	margin: 6px 20px 0 0;
+}
+#auth_user img {
+	float: left;
+	border-radius: 3px;
+}
+#auth_user .username {
+	margin-left: 8px;
+	float: left;
+	height: 25px;
+	line-height: 25px;
+	font-size: 13px;
+	letter-spacing: 1px;
+	color: #222;
+}
+#auth_link {
+	float: left;
+	height: 25px;
+	margin: 6px 10px 0 0;
+}
+#auth_link a.persona_link {
+	height: 25px;
+	line-height: 25px;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.userheader {
+	width: 100%;
+	height: 50px;
+	margin: 20px 0 20px 0;
+}
+.userheader .avatar {
+	float: left;
+	margin-right: 15px;
+}
+.userheader .avatar img {
+	border-radius: 3px;
+}
+.userheader .rightbox {
+	float: left;
+	margin-top: 0px;
+	line-height: 1.5em;
+	letter-spacing: 1px;
+}
+.userheader .rightbox .username {
+	font-size: 16px;
+}
+.userheader .rightbox .userlinks {
+	font-size: 14px;
+}
+.userheader .rightbox .photostream_title {
+	font-size: 14px;
+}
+.userheader .rightbox .userlinks a.selected {
+	color: #000;
+}
+.userheader .rightbox .separator {
+	color: #777;
+	margin: 0 10px;
+}
+
+.layout_selector {
+	margin-top: 15px;
+	float: right;
+	font-size: 10px;
+}
+.layout_selector a {
+	margin: 0 2px;
+	font-weight: bold;
+	padding: 2px 3px;
+}
+.layout_selector a.selected {
+	background-color: #555;
+	color: #FFF;
+	border-radius: 1px;
+}
+
+.photocard {
+	float: left;
+	font-size: 12px;
+	color: #555;
+	overflow: hidden;
+}
+.photostream_S .photocard {
+	padding: 15px 22px;
+}
+.photostream_S .photocard .photo {
+	min-width: 300px;
+	text-align: center;
+}
+.photostream_S .photocard:nth-child(3n+4) {
+	clear: both;
+}
+.photostream_M .photocard {
+	padding: 15px 10px;
+}
+.photostream_M .photocard .photo {
+	min-width: 500px;
+	text-align: center;
+}
+.photostream_M .photocard:nth-child(2n+3) {
+	clear: both;    
+}
+.photostream_L .photocard {
+	float: none;
+	padding: 15px 20px;
+}
+.photostream_L .photocard .photo {
+	min-width: 1000px;
+	text-align: center;
+}
+.photocard .photo {
+	padding-bottom: 5px;
+}
+.photocard .photo_title {
+	font-size: 14px;
+	color: #111;
+}
+.photocard .photo_author {
+	font-size: 13px;
+}
+.photocard .photo_stats span {
+	padding: 0px 3px;
+	letter-spacing: 1px;
+}
+.photoview {
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	font-size: 12px;
+	color: #555;
+	overflow: hidden;
+}
+.photoview .photo {
+	min-width: 1000px;
+	text-align: center;
+	margin-bottom: 15px;
+}
+.photoview .photo_title {
+	font-size: 14px;
+	color: #111;
+	margin: 4px 0;
+}
+.photoview .photo_uploaded {
+	margin: 4px 0;
+}
+.photoview .photo_stats {
+	margin: 4px 0;
+	letter-spacing: 1px;
+}
+.photoview .photo_links {
+	margin: 4px 0;
+}
+.photoview .separator {
+	padding: 0 10px;
+}
+.photoview .comments {
+	margin: 15px 0;
+	color: #322;
+}
+.photoview .comments .comment {
+	clear: both;
+	padding: 10px 0;
+}
+.photoview .comments .avatar {
+	float: left;
+}
+.photoview .comments .rightbox {
+	margin-left: 60px;
+}
+.photoview .comments .comment_text {
+	padding-top: 4px;
+}
+.photoview .comments .new_comment_block {
+	padding: 10px 0;
+	clear: both;
+}
+.photoview .comments .new_comment_text {
+	float: left;
+	height: 50px;
+}
+.photoview .comments .new_comment_text textarea {
+	float: left;
+	width: 400px;
+	height: 42px;
+	margin: 0 5px;
+	padding: 3px;
+	border: #ccc 1px solid;
+	border-radius: 3px
+}
+.photoview .comments .submit_btn input {
+	float: left;
+	height: 50px;
+	margin: 0;
+	padding: 3px 10px;
+	border: #ccc 1px solid;
+	border-radius: 3px
+}
+
+h2 {
+	clear: both;
+	color: #777;
+	letter-spacing: 2px;
+	font-size: 22px;
+	padding-top:22px;
+	font-family: Helvetica, Arial, sans-serif;
+}
+.photo_rows .photo {
+	float: left;
+	margin: 3px;
+}
+
+.paginator {
+	margin-top: 10px;
+	padding: 10px 0 20px 0;
+	font-size: 13px;
+	color: #333;
+	text-align: center;
+	border-top: #DDD 1px dotted;
+}
+.paginator .page_num {
+	margin: 0 15px;
+}
+.paginator a {
+	margin: 0 10px;
+}
+
+form input {
+	margin: 10px;
+}

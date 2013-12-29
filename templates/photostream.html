@@ -1,0 +1,81 @@
+{{template "header.html" .}}
+	
+	
+	<div class="userheader">
+		{{if .User}}
+			<div class="avatar">
+				<a href="/photos/{{.User.Username}}/"><img src="/static/avatars/{{.User.Id}}_50.jpg"></a>
+			</div>
+			<div class="rightbox">
+				<div class="username"> 
+					{{.User.Username}}
+					{{if .User.RealName}}<span class="separator">|</span> {{.User.RealName}}{{end}}
+				</div>
+				{{if eq .PhotostreamType "user-photos" "user-favorites"}}
+					<div class="userlinks">
+						<a {{if eq .PhotostreamType "user-photos"}}class="selected"{{end}} href="/photos/{{.User.Username}}/"><i class="fa fa-camera-retro"></i> photostream</a>
+						<span class="separator">|</span>
+						<a {{if eq .PhotostreamType "user-favorites"}}class="selected"{{end}} href="/favorites/{{.User.Username}}/"><i class="fa fa-heart"></i> favorites</a>
+						{{if .ShowAddContact}}
+							<span class="separator">|</span> 
+							<a class="contact_add" href="javascript:addContact('{{.User.Username}}')"><i class="fa fa-plus-square"></i> add contact</a>
+						{{end}}
+						{{if .ShowDelContact}}
+							<span class="separator">|</span> 
+							<a class="contact_del" href="javascript:delContact('{{.User.Username}}')"><i class="fa fa-minus-square"></i> remove from contacts</a>
+						{{end}}
+					</div>
+				{{else}}
+					<div class="photostream_title">photos from your contacts</div>
+				{{end}}
+			</div>
+		{{end}}
+		<div class="layout_selector">
+			<a href="javascript:changeLayout('S');" {{if eq .Layout "S"}}class="selected"{{end}}>S</a>
+			<a href="javascript:changeLayout('M');" {{if eq .Layout "M"}}class="selected"{{end}}>M</a>
+			<a href="javascript:changeLayout('L');" {{if eq .Layout "L"}}class="selected"{{end}}>L</a>
+		</div>
+	</div>
+	
+
+	<div class="photostream_{{.Layout}}">
+
+	{{$outer := .}}
+	{{range .Photos}}
+		<div class="photocard">
+			<div class="photo">
+				<a href="/photos/{{.UserUsername}}/{{.Id}}/">
+					<img src="/static/photos/{{.Id}}_{{.RandId}}_{{$outer.PhotoSuffix}}.jpg"><br>
+				</a>
+			</div>
+			<div class="photo_title">{{.Title}}</div>
+			{{if $outer.ShowPhotoAuthor}}
+				<div class="photo_author">
+					<a href="/photos/{{.UserUsername}}/">by {{.UserUsername}}</a>
+				</div>
+			{{end}}
+			<div class="photo_uploaded">Uploaded on {{.Tm | formatdt}}</div>
+			<div class="photo_stats">
+				<span title="views"><i class="fa fa-eye"></i> {{.ViewsCount}}</span> /
+				<span title="favorites"><i class="fa fa-heart"></i> {{.FavoritesCount}}</span> /
+				<span title="comments"><i class="fa fa-comments"></i> {{.CommentsCount}}</span>
+			</div>
+
+		</div>
+	{{end}}
+	
+	</div>
+
+	<div class="paginator clear">
+		{{if gt .Page 1}}
+			<a href="{{.PhotostreamUrl}}"><i class="fa fa-angle-double-left"></i> first page</a>
+			<a href="{{.PhotostreamUrl}}page/{{.PrevPage}}/"><i class="fa fa-angle-left"></i> prev page</a>
+		{{end}}
+		<span class="page_num"> <i class="fa fa-file"></i> {{.Page}} / {{.LastPage}}</span>
+		{{if lt .Page .LastPage}}
+			<a href="{{.PhotostreamUrl}}page/{{.NextPage}}/">next page <i class="fa fa-angle-right"></i></a>
+			<a href="{{.PhotostreamUrl}}page/{{.LastPage}}/">last page <i class="fa fa-angle-double-right"></i></a>
+		{{end}}
+	</div>
+	
+{{template "footer.html" .}}

@@ -1,0 +1,44 @@
+{{template "header.html" .}}
+
+	{{if .CurrentUser}}
+
+		<h2>Recent photos from you</h2>
+		<div class="photo_rows">
+			{{range .UserPhotos}}
+				<div class="photo">
+					<a href="/photos/{{.UserUsername}}/{{.Id}}/">
+						<img src="/static/photos/{{.Id}}_{{.RandId}}_t200.jpg">
+					</a>
+				</div>
+			{{end}}
+		</div>
+
+		<h2>Recent photos from your contacts</h2>
+		<div class="photo_rows">
+			{{range .ContactsPhotos}}
+				<div class="photo">
+					<a href="/photos/{{.UserUsername}}/{{.Id}}/">
+						<img src="/static/photos/{{.Id}}_{{.RandId}}_t200.jpg">
+					</a>
+				</div>
+			{{end}}
+		</div>
+
+	{{else}}
+		<div class="big_link">
+			<a href="javascript:navigator.id.request()"><i class="fa fa-key"></i> login / register</a>
+		</div>
+	{{end}}
+
+	<h2>Recent photos from <i class="fa fa-camera-retro"></i>quiet members</h2>
+	<div class="photo_rows">
+		{{range .OthersPhotos}}
+			<div class="photo">
+				<a href="/photos/{{.UserUsername}}/{{.Id}}/">
+					<img src="/static/photos/{{.Id}}_{{.RandId}}_t200.jpg">
+				</a>
+			</div>
+		{{end}}
+	</div>
+	
+{{template "footer.html" .}}

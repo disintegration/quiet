@@ -1,0 +1,26 @@
+{{template "header.html" .}}
+
+	<h2>Settings</h2>
+
+	<form method="post" enctype="multipart/form-data">
+		Username: 
+		{{if .CurrentUser.Username}} 
+			<span class="settings_username">{{.CurrentUser.Username}}</span>
+		{{else}}
+			<input name="username" type="text" size="30" pattern="^[a-z0-9_-]{3,30}$" />
+		{{end}}
+		<br />
+
+		Real name: 
+		<input name="realname" type="text" size="30" value="{{.CurrentUser.RealName}}" />
+		<br />
+
+		Avatar:
+		<input name="avatar_file" id="avatar_file" type="file" accept="image/jpeg" /><br />
+		<img src="/static/avatars/{{.CurrentUser.Id}}_75.jpg">
+		<br />
+
+		<input type="submit" value="Save"/>
+	</form>	
+	
+{{template "footer.html" .}}

@@ -14,6 +14,7 @@ This is my personal weekend project to learn Go. Work in progress.
 ### Tech
 - Go 1.2+ (golang.org)
 - PostgreSQL (no ORM)
+- Mozilla Persona authentication 
 - Gorilla Toolkit (router, secure cookies)
 - github.com/disintegration/imaging for image processing
 

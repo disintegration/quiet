@@ -297,7 +297,7 @@ func GetFavoritePhotosByUserId(userId int64, offset int, limit int) ([]*Photo, e
 			f.user_id = $1
 			AND f.photo_id = p.id
 			AND p.processed = 1
-		ORDER BY p.tm DESC
+		ORDER BY f.tm DESC
 		OFFSET $2
 		LIMIT $3
 		`,

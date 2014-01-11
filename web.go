@@ -75,7 +75,6 @@ func main() {
 	r.HandleFunc(`/contacts/del/{username:[a-z0-9_]+}/`, HandleDeleteContact)
 	r.HandleFunc(`/contacts/photos/`, HandleContactsPhotos)
 	r.HandleFunc(`/contacts/photos/page/{page:\d+}/`, HandleContactsPhotos)
-	r.HandleFunc(`/activity/`, HandleActivity)
 	r.HandleFunc(`/settings/`, HandleSettings)
 	r.HandleFunc(`/upload/`, HandleUpload)
 	r.HandleFunc(`/login/`, HandleLogin)
@@ -338,6 +337,11 @@ func HandlePhoto(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleAddFavorite(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+
 	vars := mux.Vars(r)
 	username := vars["username"]
 	photoIdStr := vars["photo"]
@@ -392,6 +396,11 @@ func HandleAddFavorite(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleDeleteFavorite(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+
 	vars := mux.Vars(r)
 	username := vars["username"]
 	photoIdStr := vars["photo"]
@@ -446,6 +455,11 @@ func HandleDeleteFavorite(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleDeletePhoto(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+
 	vars := mux.Vars(r)
 	username := vars["username"]
 	photoIdStr := vars["photo"]
@@ -490,6 +504,11 @@ func HandleDeletePhoto(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleAddComment(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+
 	vars := mux.Vars(r)
 	username := vars["username"]
 	photoIdStr := vars["photo"]
@@ -529,6 +548,11 @@ func HandleAddComment(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleDeleteComment(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+
 	vars := mux.Vars(r)
 	username := vars["username"]
 	photoIdStr := vars["photo"]
@@ -758,6 +782,11 @@ func HandleContactsPhotos(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleAddContact(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+
 	vars := mux.Vars(r)
 	username := vars["username"]
 
@@ -800,6 +829,11 @@ func HandleAddContact(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleDeleteContact(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+
 	vars := mux.Vars(r)
 	username := vars["username"]
 
@@ -839,10 +873,6 @@ func HandleDeleteContact(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprintln(w, "OK")
-}
-
-func HandleActivity(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Activity")
 }
 
 func HandleUpload(w http.ResponseWriter, r *http.Request) {
@@ -985,6 +1015,11 @@ func HandleSettings(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+
 	audience := r.Host
 	assertion := r.FormValue("assertion")
 	if assertion == "" {
@@ -1041,6 +1076,11 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleLogout(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+
 	ClearCurrentUser(w)
 	fmt.Fprintln(w, "OK")
 }

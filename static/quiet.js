@@ -31,7 +31,7 @@ function changeLayout(layout) {
 
 function addContact(username) {
 	$.ajax({ 
-		type: 'GET',
+		type: 'POST',
 		url: '/contacts/add/' + username + '/',
 		success: function(res, status, xhr) { window.location.reload(); },
 		error: function(xhr, status, err) { console.log('ajax error: ' + status +  ' | ' + err); }
@@ -40,7 +40,7 @@ function addContact(username) {
 
 function delContact(username) {
 	$.ajax({ 
-		type: 'GET',
+		type: 'POST',
 		url: '/contacts/del/' + username + '/',
 		success: function(res, status, xhr) { window.location.reload(); },
 		error: function(xhr, status, err) { console.log('ajax error: ' + status +  ' | ' + err); }
@@ -49,7 +49,7 @@ function delContact(username) {
 
 function addFavorite(username, photoId) {
 	$.ajax({ 
-		type: 'GET',
+		type: 'POST',
 		url: '/photos/' + username + '/' + photoId + '/fav/',
 		success: function(res, status, xhr) { window.location.reload(); },
 		error: function(xhr, status, err) { console.log('ajax error: ' + status +  ' | ' + err); }
@@ -58,7 +58,7 @@ function addFavorite(username, photoId) {
 
 function delFavorite(username, photoId) {
 	$.ajax({ 
-		type: 'GET',
+		type: 'POST',
 		url: '/photos/' + username + '/' + photoId + '/unfav/',
 		success: function(res, status, xhr) { window.location.reload(); },
 		error: function(xhr, status, err) { console.log('ajax error: ' + status +  ' | ' + err); }
@@ -68,7 +68,7 @@ function delFavorite(username, photoId) {
 function delPhoto(username, photoId) {
 	if (confirm('Are you sure you want to delete this photo?')) {
 		$.ajax({ 
-			type: 'GET',
+			type: 'POST',
 			url: '/photos/' + username + '/' + photoId + '/del/',
 			success: function(res, status, xhr) { window.location.replace('/photos/' + username + '/'); },
 			error: function(xhr, status, err) { console.log('ajax error: ' + status +  ' | ' + err); }
@@ -92,7 +92,7 @@ function addComment(username, photoId) {
 function delComment(username, photoId, commentId) {
 	if (confirm('Are you sure you want to delete this comment?')) {
 		$.ajax({ 
-			type: 'GET',
+			type: 'POST',
 			url: '/photos/' + username + '/' + photoId + '/delcomment/' + commentId + '/',
 			success: function(res, status, xhr) { window.location.reload(); },
 			error: function(xhr, status, err) { console.log('ajax error: ' + status +  ' | ' + err); }

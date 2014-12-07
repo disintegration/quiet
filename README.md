@@ -2,7 +2,7 @@
 
 Photo hosting web application in Go language. 
 
-This is my personal weekend project to learn Go. Work in progress.
+It was my personal weekend project to learn Go. Now discontinued.
 
 ### Features
 - Simple and clean design
